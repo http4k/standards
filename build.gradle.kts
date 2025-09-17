@@ -17,21 +17,6 @@ repositories {
 
 configure<MavenPublishBaseExtension> {
     configure<PublishingExtension> {
-        repositories {
-            maven {
-                name = "http4k"
-                url = URI("s3://http4k-maven")
-
-                val ltsPublishingUser: String? by project
-                val ltsPublishingPassword: String? by project
-
-                credentials(AwsCredentials::class.java) {
-                    accessKey = ltsPublishingUser
-                    secretKey = ltsPublishingPassword
-                }
-            }
-        }
-
         val enableSigning = project.findProperty("sign") == "true"
 
         if (enableSigning) {
@@ -44,7 +29,7 @@ configure<MavenPublishBaseExtension> {
             }
         }
 
-        publishToMavenCentral(automaticRelease = true)
+        publishToMavenCentral(automaticRelease = false)
 
         coordinates(
             "org.http4k",
