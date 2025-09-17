@@ -5,7 +5,7 @@ flowchart LR
     schedule(["⏰ schedule"])
     workflowdispatch(["👤 workflow_dispatch"])
     updatedependenciesyml["Update Dependencies"]
-    schedule -->|"0 0 * * *"|updatedependenciesyml
+    schedule -->|"0 12 * * 5"|updatedependenciesyml
     workflowdispatch --> updatedependenciesyml
 ```
 

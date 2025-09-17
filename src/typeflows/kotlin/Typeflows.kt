@@ -13,7 +13,7 @@ class Typeflows : Builder<TypeflowsRepo> {
         dotGithub = DotGitHub {
             workflows += UpdateGradleProjectDependencies(
                 "update-dependencies",
-                Cron.of("0 0 * * *"),
+                Cron.of("0 12 * * 5"),
                 RunCommand("./gradlew check")
             )
 

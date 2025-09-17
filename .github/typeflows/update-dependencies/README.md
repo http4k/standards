@@ -3,7 +3,7 @@
 ```mermaid
 %%{init: {"flowchart": {"curve": "basis"}}}%%
 flowchart TD
-    schedule(["⏰ schedule<br/>0 0 * * *"])
+    schedule(["⏰ schedule<br/>0 12 * * 5"])
     workflowdispatch(["👤 workflow_dispatch"])
     subgraph updatedependenciesyml["Update Dependencies"]
         updatedependenciesyml_updatedependencies["update-dependencies<br/>🐧 ubuntu-latest"]
