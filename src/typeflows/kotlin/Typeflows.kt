@@ -1,0 +1,24 @@
+import io.typeflows.TypeflowsRepo
+import io.typeflows.github.DotGitHub
+import io.typeflows.github.TypeflowsGitHubRepo
+import io.typeflows.github.visualisation.WorkflowVisualisations
+import io.typeflows.github.workflows.Cron
+import io.typeflows.github.workflows.steps.RunCommand
+import io.typeflows.standards.TypeflowsProjectStandards
+import io.typeflows.util.Builder
+import org.http4k.typeflows.UpdateGradleProjectDependencies
+
+class Typeflows : Builder<TypeflowsRepo> {
+    override fun build() = TypeflowsGitHubRepo {
+        dotGithub = DotGitHub {
+            workflows += UpdateGradleProjectDependencies(
+                "update-dependencies",
+                Cron.of("0 0 * * *"),
+                RunCommand("./gradlew check")
+            )
+
+            files += WorkflowVisualisations(workflows)
+        }
+        files += TypeflowsProjectStandards()
+    }
+}
