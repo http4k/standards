@@ -1,5 +1,4 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -32,7 +31,7 @@ configure<MavenPublishBaseExtension> {
         publishToMavenCentral(automaticRelease = false)
 
         coordinates(
-            "org.http4k",
+            "org.http4k.standards",
             project.name,
             project.properties["releaseVersion"]?.toString() ?: "LOCAL"
         )
