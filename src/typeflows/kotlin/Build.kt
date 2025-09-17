@@ -47,7 +47,7 @@ class Build : Builder<Workflow> {
 
             steps += RunCommand("./gradlew check --info", "Build")
 
-            val token = Secrets.string("WORKFLOWS_TOKEN")
+            val token = Secrets.string("TOOLBOX_REPO_TOKEN")
 
             steps += RunScript("scripts/tag-if-required.sh", "Release (if required)") {
                 id = "get-version"
