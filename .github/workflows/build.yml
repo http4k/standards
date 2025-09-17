@@ -3,8 +3,6 @@ name: Build in CI
   workflow_dispatch: {
     }
   push:
-    branches-ignore:
-    - develop
     paths-ignore:
     - '**/.md'
   pull_request:

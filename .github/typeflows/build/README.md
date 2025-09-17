@@ -4,7 +4,7 @@
 %%{init: {"flowchart": {"curve": "basis"}}}%%
 flowchart TD
     workflowdispatch(["👤 workflow_dispatch"])
-    push(["📤 push<br/>branches(ignore: 1), paths(ignore: 1)"])
+    push(["📤 push<br/>paths(ignore: 1)"])
     pullrequest(["🔀 pull_request<br/>(*)"])
     subgraph buildyml["Build in CI"]
         buildyml_metadata[["🔧 Workflow Config<br/>🔐 custom permissions"]]

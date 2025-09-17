@@ -29,7 +29,6 @@ class Build : Builder<Workflow> {
         permissions = Permissions(Contents to Write)
 
         on += Push {
-            branches = Branches.Ignore("develop")
             paths = Paths.Ignore("**/.md")
         }
 
