@@ -1,15 +1,15 @@
-import io.typeflows.github.workflows.Job
-import io.typeflows.github.workflows.RunsOn
-import io.typeflows.github.workflows.Secrets
-import io.typeflows.github.workflows.Workflow
-import io.typeflows.github.workflows.steps.RunScript
-import io.typeflows.github.workflows.steps.UseAction
-import io.typeflows.github.workflows.steps.marketplace.Checkout
-import io.typeflows.github.workflows.steps.marketplace.JavaDistribution.Adopt
-import io.typeflows.github.workflows.steps.marketplace.JavaVersion.V21
-import io.typeflows.github.workflows.steps.marketplace.SetupGradle
-import io.typeflows.github.workflows.steps.marketplace.SetupJava
-import io.typeflows.github.workflows.triggers.RepositoryDispatch
+import io.typeflows.github.workflow.Job
+import io.typeflows.github.workflow.RunsOn
+import io.typeflows.github.workflow.Secrets
+import io.typeflows.github.workflow.Workflow
+import io.typeflows.github.workflow.step.RunScript
+import io.typeflows.github.workflow.step.UseAction
+import io.typeflows.github.workflow.step.marketplace.Checkout
+import io.typeflows.github.workflow.step.marketplace.JavaDistribution.Adopt
+import io.typeflows.github.workflow.step.marketplace.JavaVersion.V21
+import io.typeflows.github.workflow.step.marketplace.SetupGradle
+import io.typeflows.github.workflow.step.marketplace.SetupJava
+import io.typeflows.github.workflow.trigger.RepositoryDispatch
 import io.typeflows.util.Builder
 
 class UploadRelease : Builder<Workflow> {

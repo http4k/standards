@@ -1,14 +1,14 @@
 [versions]
-kotlin = "2.2.20"
-typeflows = "0.23.0-beta"
-version-catalog-update = "1.0.0"
 com-vanniktech-gradle-maven-publish-plugin = "0.34.0"
+kotlin = "2.2.20"
+typeflows = "0.24.0-beta"
+version-catalog-update = "1.0.0"
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 typeflows = { id = "io.typeflows", version.ref = "typeflows" }
+vannitech = { id = "com.vanniktech.maven.publish", version.ref = "com-vanniktech-gradle-maven-publish-plugin" }
 version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }
-vannitech= { id = "com.vanniktech.maven.publish", version.ref = "com-vanniktech-gradle-maven-publish-plugin" }
 
 [libraries]
 typeflows-github = { module = "io.typeflows:typeflows-github", version.ref = "typeflows" }
