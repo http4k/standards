@@ -63,7 +63,6 @@ configure<MavenPublishBaseExtension> {
 dependencies {
     api(libs.typeflows.github)
     api(libs.typeflows.github.marketplace)
-    api(libs.typeflows.github.project.standards)
 
     typeflowsApi(project(":"))
 }

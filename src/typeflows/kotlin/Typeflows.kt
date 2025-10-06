@@ -4,8 +4,8 @@ import io.typeflows.github.TypeflowsGitHubRepo
 import io.typeflows.github.visualisation.WorkflowVisualisations
 import io.typeflows.github.workflow.Cron
 import io.typeflows.github.workflow.step.RunCommand
-import io.typeflows.standards.TypeflowsProjectStandards
 import io.typeflows.util.Builder
+import org.http4k.typeflows.Http4kProjectStandards
 import org.http4k.typeflows.UpdateGradleProjectDependencies
 
 class Typeflows : Builder<TypeflowsRepo> {
@@ -22,6 +22,6 @@ class Typeflows : Builder<TypeflowsRepo> {
 
             files += WorkflowVisualisations(workflows)
         }
-        files += TypeflowsProjectStandards()
+        files += Http4kProjectStandards()
     }
 }
