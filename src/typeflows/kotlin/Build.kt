@@ -14,7 +14,6 @@ import io.typeflows.github.workflow.step.marketplace.JavaDistribution.Adopt
 import io.typeflows.github.workflow.step.marketplace.JavaVersion.V21
 import io.typeflows.github.workflow.step.marketplace.SetupGradle
 import io.typeflows.github.workflow.step.marketplace.SetupJava
-import io.typeflows.github.workflow.trigger.Branches
 import io.typeflows.github.workflow.trigger.Paths
 import io.typeflows.github.workflow.trigger.PullRequest
 import io.typeflows.github.workflow.trigger.Push
