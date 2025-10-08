@@ -48,8 +48,8 @@ configure<MavenPublishBaseExtension> {
                         .appendNode("email", "ivan@http4k.org")
                 }
                 asNode().appendNode("scm")
-                    .appendNode("url", "https://github.com/http4k/standards").parent()
-                    .appendNode("connection", "scm:git:git@github.com:http4k/standards.git").parent()
+                    .appendNode("url", "https://github.com/http4k/typeflows").parent()
+                    .appendNode("connection", "scm:git:git@github.com:http4k/typeflows.git").parent()
                     .appendNode("developerConnection", "scm:git:git@github.com:http4k/standards.git")
 
                 asNode().appendNode("licenses").appendNode("license")

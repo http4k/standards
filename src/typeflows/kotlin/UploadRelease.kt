@@ -13,33 +13,33 @@ import io.typeflows.github.workflow.trigger.RepositoryDispatch
 import io.typeflows.util.Builder
 
 class UploadRelease : Builder<Workflow> {
-    override fun build() = Workflow.configure("upload-release") { workflow ->
-        workflow.displayName = "Publish Artifacts"
-        workflow.on += RepositoryDispatch("release")
+    override fun build() = Workflow("upload-release") {
+        displayName = "Publish Artifacts"
+        on += RepositoryDispatch("release")
 
-        workflow.jobs += Job("release", RunsOn.UBUNTU_LATEST) {
+        jobs += Job("release", RunsOn.UBUNTU_LATEST) {
 
             name = "Release"
-            steps += Checkout.configure { it ->
-                it.with["ref"] = $$"${{ github.event.client_payload.tag }}"
+            steps += Checkout {
+                with["ref"] = $$"${{ github.event.client_payload.tag }}"
             }
 
             steps += SetupJava(Adopt, V21)
 
             steps += SetupGradle()
 
-            steps += RunScript.configure("scripts/publish-artifacts.sh", "Publish") { script ->
-                script.env["RELEASE_VERSION"] = $$"${{ github.event.client_payload.tag }}"
-                script.env["SIGNING_KEY"] = $$"${{ secrets.SIGNING_KEY }}"
-                script.env["SIGNING_PASSWORD"] = $$"${{ secrets.SIGNING_PASSWORD }}"
-                script.env["ORG_GRADLE_PROJECT_mavenCentralUsername"] = $$"${{ secrets.MAVEN_CENTRAL_USERNAME }}"
-                script.env["ORG_GRADLE_PROJECT_mavenCentralPassword"] = $$"${{ secrets.MAVEN_CENTRAL_PASSWORD }}"
-                script.env["ORG_GRADLE_PROJECT_signingInMemoryKey"] = $$"${{ secrets.SIGNING_KEY }}"
-                script.env["ORG_GRADLE_PROJECT_signingInMemoryKeyPassword"] = $$"${{ secrets.SIGNING_PASSWORD }}"
+            steps += RunScript("scripts/publish-artifacts.sh", "Publish") {
+                env["RELEASE_VERSION"] = $$"${{ github.event.client_payload.tag }}"
+                env["SIGNING_KEY"] = $$"${{ secrets.SIGNING_KEY }}"
+                env["SIGNING_PASSWORD"] = $$"${{ secrets.SIGNING_PASSWORD }}"
+                env["ORG_GRADLE_PROJECT_mavenCentralUsername"] = $$"${{ secrets.MAVEN_CENTRAL_USERNAME }}"
+                env["ORG_GRADLE_PROJECT_mavenCentralPassword"] = $$"${{ secrets.MAVEN_CENTRAL_PASSWORD }}"
+                env["ORG_GRADLE_PROJECT_signingInMemoryKey"] = $$"${{ secrets.SIGNING_KEY }}"
+                env["ORG_GRADLE_PROJECT_signingInMemoryKeyPassword"] = $$"${{ secrets.SIGNING_PASSWORD }}"
             }
 
-            steps += RunScript.configure("scripts/build-release-note.sh", "Build release note") { script ->
-                script.env["RELEASE_VERSION"] = $$"${{ github.event.client_payload.tag }}"
+            steps += RunScript("scripts/build-release-note.sh", "Build release note") {
+                env["RELEASE_VERSION"] = $$"${{ github.event.client_payload.tag }}"
             }
 
             steps += UseAction("actions/create-release@v1", "Create Release") {
