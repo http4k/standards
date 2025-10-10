@@ -12,5 +12,5 @@ import io.typeflows.util.Builder
  * consistency and best practices across projects.
  */
 class Http4kProjectStandards : Builder<TypeflowsFSEntry> {
-    override fun build() = TypeflowsResources(Http4kProjectStandards::class.java)
+    override fun build() = TypeflowsResources.of(Http4kProjectStandards::class.java)
 }
