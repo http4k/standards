@@ -13,7 +13,7 @@ flowchart LR
     workflowdispatch --> buildyml
     workflowdispatch --> updatedependenciesyml
     push -->|"paths(ignore: 1)"|buildyml
-    pullrequest -->|"(*)"|buildyml
+    pullrequest -->|"(*), paths(ignore: 1)"|buildyml
     schedule -->|"0 12 * * 5"|updatedependenciesyml
     buildyml --> repositorydispatchgithubrepository
     repositorydispatchgithubrepository -->|"release"|uploadreleaseyml

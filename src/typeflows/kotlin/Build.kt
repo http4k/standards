@@ -44,11 +44,14 @@ class Build : Builder<Workflow> {
 
             steps += SetupGradle()
 
-            steps += RunCommand("./gradlew check --info", "Build")
+            steps += RunCommand("./gradlew check --info") {
+                name = "Build"
+            }
 
             val token = Secrets.string("TOOLBOX_REPO_TOKEN")
 
-            steps += RunScript("scripts/tag-if-required.sh", "Release (if required)") {
+            steps += RunScript("scripts/tag-if-required.sh") {
+                name = "Release (if required)"
                 id = "get-version"
                 condition = StrExp.of("github.ref").isEqualTo("refs/heads/main")
                 env["GH_TOKEN"] = token

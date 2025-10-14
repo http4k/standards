@@ -28,7 +28,8 @@ class UploadRelease : Builder<Workflow> {
 
             steps += SetupGradle()
 
-            steps += RunScript("scripts/publish-artifacts.sh", "Publish") {
+            steps += RunScript("scripts/publish-artifacts.sh") {
+                name = "Publish"
                 env["RELEASE_VERSION"] = $$"${{ github.event.client_payload.tag }}"
                 env["SIGNING_KEY"] = $$"${{ secrets.SIGNING_KEY }}"
                 env["SIGNING_PASSWORD"] = $$"${{ secrets.SIGNING_PASSWORD }}"
@@ -38,11 +39,13 @@ class UploadRelease : Builder<Workflow> {
                 env["ORG_GRADLE_PROJECT_signingInMemoryKeyPassword"] = $$"${{ secrets.SIGNING_PASSWORD }}"
             }
 
-            steps += RunScript("scripts/build-release-note.sh", "Build release note") {
+            steps += RunScript("scripts/build-release-note.sh") {
+                name = "Build release note"
                 env["RELEASE_VERSION"] = $$"${{ github.event.client_payload.tag }}"
             }
 
-            steps += UseAction("actions/create-release@v1", "Create Release") {
+            steps += UseAction("actions/create-release@v1") {
+                name = "Create Release"
                 env["GITHUB_TOKEN"] = Secrets.GITHUB_TOKEN
                 with["tag_name"] = $$"${{ github.event.client_payload.tag }}"
                 with["release_name"] = $$"${{ github.event.client_payload.tag }}"

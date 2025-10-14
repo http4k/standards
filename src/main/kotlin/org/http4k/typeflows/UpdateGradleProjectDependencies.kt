@@ -1,6 +1,5 @@
 package org.http4k.typeflows
 
-import io.typeflows.github.workflow.GitHub.token
 import io.typeflows.github.workflow.Cron
 import io.typeflows.github.workflow.Job
 import io.typeflows.github.workflow.Permission.Actions
@@ -56,15 +55,20 @@ class UpdateGradleProjectDependencies(
                 PullRequests to Write
             )
 
-            steps += Checkout("Checkout repository") {
+            steps += Checkout {
+                name = "Checkout repository"
                 token = Secrets.GITHUB_TOKEN.toString()
             }
 
-            steps += SetupJava(JDK, JAVA_VERSION, "Set up JDK")
+            steps += SetupJava(JDK, JAVA_VERSION) {
+                name = "Set up JDK"
+            }
 
             steps += SetupGradle()
 
-            steps += RunCommand("./gradlew versionCatalogUpdate", "Build")
+            steps += RunCommand("./gradlew versionCatalogUpdate") {
+                name = "Build"
+            }
             steps += buildCommand
 
             steps += RunCommand(
@@ -75,12 +79,13 @@ class UpdateGradleProjectDependencies(
                   echo "has_changes=true" >> $GITHUB_OUTPUT
                 fi
                 """.trimIndent(),
-                "Check for changes"
             ) {
+                name = "Check for changes"
                 id = "changes"
             }
 
-            steps += UseAction("peter-evans/create-pull-request@v6", "Create Pull Request") {
+            steps += UseAction("peter-evans/create-pull-request@v6") {
+                name = "Create Pull Request"
                 condition = StrExp.of("steps.changes.outputs.has_changes")
 
                 with += mapOf(

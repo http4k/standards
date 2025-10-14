@@ -5,7 +5,7 @@
 flowchart TD
     workflowdispatch(["👤 workflow_dispatch"])
     push(["📤 push<br/>paths(ignore: 1)"])
-    pullrequest(["🔀 pull_request<br/>(*)"])
+    pullrequest(["🔀 pull_request<br/>(*), paths(ignore: 1)"])
     subgraph buildyml["Build in CI"]
         buildyml_metadata[["🔧 Workflow Config<br/>🔐 custom permissions"]]
         buildyml_build["Build and Test<br/>🐧 ubuntu-latest"]
