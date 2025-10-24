@@ -1,6 +1,6 @@
 [versions]
 com-vanniktech-gradle-maven-publish-plugin = "0.34.0"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 typeflows = "0.31.0-beta"
 version-catalog-update = "1.0.1"
 
